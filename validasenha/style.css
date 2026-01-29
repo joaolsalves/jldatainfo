@@ -1,0 +1,36 @@
+.formulario{
+    display: flex;
+    flex-direction: column;
+    background: gray;
+    align-items: center;
+}
+
+.clSenha{
+    background: green;
+}
+
+.clSenhaConfirmacao{
+    background: greenyellow;
+}
+
+.clBotao{
+    background: blue;
+}
+
+.clMensagem{
+    background: pink;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #f1f1f1;
+  }
+  
+  .progress-bar {
+    width: 0;
+    height: 30px;
+    background-color: #4caf50;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+  }

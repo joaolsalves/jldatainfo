@@ -1,0 +1,449 @@
+/* Cores */
+
+:root {
+  /* Brand */
+  --color-primary-1: #f2f1c3;
+  --color-primary-2: #4a4a32;
+  --color-primary-3: #3f3e2a;
+  --color-primary-4: #27291e;
+
+  /* Neutrals */
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-300: #D1D5DB;
+  --color-gray-700: #374151;
+  --color-gray-900: #111827;
+
+  /* Feedback */
+  --color-success: #16A34A;
+  --color-warning: #F59E0B;
+  --color-danger: #DC2626;
+
+  /* Texturas botão luteria */
+  --wood-primary: #D4A373;
+  --wood-primary-hover: #B88958;
+  --wood-text: #3A2A1F;
+  --wood-shadow: #3A2A1F;
+  --wood-bg-soft: #FAF3E7;
+
+  /* Fontes */
+  --font-color-primary-dark: #2b2b2b;
+  --font-color-primary-light: #f2f1c3;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+
+body {
+  font-family: 'Lato', Arial, sans-serif;
+  color: #2b2b2b;
+  background-color: var(--color-primary-1);
+  line-height: 1.6;
+}
+
+.cl-header {
+  background: var(--color-primary-2);
+  color: var(--font-color-primary-light);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cl-header-nav{
+  text-align: right;
+
+}
+header h1 {
+  font-size: 1.4rem;
+}
+
+nav a {
+  color: var(--font-color-primary-light);
+  margin-left: px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* .hero {
+  text-align: center;
+  padding: 0px 0px;
+  background: var(--color-primary-3);
+}
+
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 0px;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 0 auto 0px;
+} */
+
+.cl-main {
+  justify-content: center;
+  align-items: normal;
+  height: 100%;
+  width: 100%;
+  gap: 0px;
+  background: var(--color-primary-1);
+
+}
+
+.cl-sobre {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--color-primary-3);
+  color: var(--font-color-primary-light);
+  padding: 30px;
+  width: 100%;
+
+}
+
+.cl-sobre-texto{
+  flex: 1;
+  width: 50%;
+  padding: 100px;
+  text-align: left; 
+}
+
+.cl-paragrafo-sobre {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: justify;
+}
+
+.cl-imagem-sobre {
+  flex: 1;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.cl-imagem-sobre img {
+  width: 90%;
+  height: auto;
+  border-radius: 0px;
+}
+
+.cl-servicos {
+
+  background: var(--color-primary-1);
+  color: var(--font-color-primary-dark);
+  padding: 30px;
+}
+
+.cl-trabalhamos {
+  background: var(--color-primary-4);
+
+  color: var(--font-color-primary-light); 
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+
+}
+
+.cl-trabalhos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  background: var(--color-primary-4);
+  color: var(--font-color-primary-light); 
+
+}
+
+.cl-trabalhos-texto {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  align-content: center;
+  justify-content: space-between;
+  padding: 50px;
+
+}
+
+.cl-trabalhos-texto-titulo {
+  flex: 1;
+  width: 100%;
+
+  padding: 30px;
+
+}
+
+.cl-trabalhos-texto-corpo {
+  flex: 1;
+  width: 100%;
+
+  padding: 30px;
+  width: 100%;
+  display: flex;
+}
+
+.cl-trabalhos-texto-corpo-1 {
+  flex: 1;
+  width: 50%;
+
+  padding: 30px;
+
+}
+
+.cl-trabalhos-texto-corpo-2 {
+  flex: 1;
+  width: 50%;
+
+  padding: 30px;
+
+}
+
+.cl-trabalhos-imagem {
+  width: 50%;
+
+}
+
+.cl-trabalhos-imagem img {
+  width: 90%;
+  height: auto;
+  border-radius: 0px;
+}
+
+.cl-contato {
+  background: var(--color-primary-2);
+  color: var(--font-color-primary-light);
+  padding: 30px;
+}
+
+
+
+.cl-imagem-bancada img {
+  width: 50%;
+  height: auto;
+  border-radius: 8px;
+  margin-left: 20px;
+}
+
+.btn {
+  background: #5a3e2b;
+  color: #fff;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background: #3f2b1f;
+}
+
+section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+section h3 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #5a3e2b;
+  display: inline-block;
+}
+
+#servicos ul {
+  list-style: none;
+}
+
+#servicos li {
+  margin-bottom: 10px;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.galeria img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--color-primary-3);
+  color: var(--font-color-primary-light);
+  font-size: 0.8rem;
+}
+
+/*   BOTÕES */
+
+.btn-whatsapp {
+  top: 70px;
+  right: 10px;
+}
+
+.btn-whatsapp:hover {
+  width: 51px;
+  height: 51px;
+}
+
+.btn-instagram {
+  top: 122px;
+  right: 10px;
+}
+
+.btn-instagram:hover {
+  width: 51px;
+  height: 51px;
+}
+
+.btn-facebook {
+  top: 174px;
+  right: 10px;
+}
+
+.btn-facebook:hover {
+  width: 51px;
+  height: 51px;
+}
+
+/* IMAGEM-BOTÕES */
+
+.img-logo-social {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  position: fixed;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.img-menu-reponsivo {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+}
+
+/* FIM-IMAGEM-BOTÕES */
+
+
+/* Botão Luteria */
+
+.btn-luthier {
+  bottom: 60px;
+  right: 20px;
+
+  position: fixed;
+  padding: 5px;
+  text-decoration: none;
+
+  display: inline-flex;
+  ;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 70px;
+  background-color: var(--color-primary-2);
+  color: var(--color-primary-1);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  text-align: center;
+
+  padding: 14px 28px;
+  border-radius: 6px;
+  border: 2px solid var(--color-primary-4);
+  cursor: pointer;
+
+  box-shadow: 2px 2px 0px var(--color-primary-3);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+
+}
+
+.btn-luthier:hover {
+  background-color: var(--color-primary-3);
+}
+
+.btn-luthier:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--color-primary-4);
+}
+
+/* Botão Luteria - FIM */
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  .cl-sobre {
+    flex-direction: column;
+    
+    
+  }
+
+  .cl-sobre-texto{
+    width: 100%;
+    padding: 0px;
+    text-align: justify;
+  }
+
+  .cl-paragrafo-sobre,
+  .cl-imagem-sobre {
+    width: 100%;
+  }
+
+  .cl-imagem-bancada img {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .cl-trabalhos {
+    flex-direction: column;
+
+  }
+
+  .cl-trabalhos-texto {
+    width: 100%;
+  }
+
+  .cl-trabalhos-texto-titulo {
+    height: 10%;
+  }
+
+  .cl-trabalhos-texto-corpo {
+    height: 90%;
+  }
+
+  .cl-trabalhos-imagem {
+    width: 100%;
+    margin-top: 0px;
+  }
+
+  .cl-trabalhos-imagem img {
+    width: 100%;
+  }
+
+}

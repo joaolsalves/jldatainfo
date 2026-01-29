@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="parcela1" value="2"><br><br>
+    <input type="text" id="parcela2" value="4"><br><br>
+    <input type="label" id="resultado"><br><br>
+    <button onclick="fnCalcula()">
+        Calcular
+    </button>
+
+
+<script>
+
+    function fnCalcula(n1, n2){
+        let vparcela1 = parseInt(document.getElementById("parcela1").value);
+        let vparcela2 = parseInt(document.getElementById("parcela2").value);
+        let vresultado = vparcela1 + vparcela2;
+
+        console.log(vparcela1);
+        console.log(vparcela2);
+        console.log(vresultado);
+
+        document.getElementById("resultado").value = vresultado;
+        
+    }
+</script>
+
+</body>
+</html>

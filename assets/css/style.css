@@ -1,0 +1,203 @@
+:root {
+  --cor-bottom: #015cac;
+  --cor-inicial: #015cac;
+  --cor-final: #9ed2ff;/* #16476A; */
+  
+}
+
+* {
+    color: white;
+    font-family: 'Lato';
+    font-size: 10px;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0px;
+}
+
+.container-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+
+    position: fixed;
+    background: #015cac;
+    height: 100px;
+    width: 100%;
+    top: 0px;
+
+}
+
+.container-logo{
+    display: none;
+    flex-grow: 1;
+    width: 10vw;
+    background: orange;
+    text-align: center;
+}
+
+
+
+.container-center{
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    flex-grow: 100;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    
+
+}
+
+.container-center a{
+
+    text-decoration: none;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+
+}
+
+.container-menu{
+    display: none;
+    flex-grow: 1;
+    width: 10vw;
+    background: orange;
+    text-align: center;
+    
+}
+
+.corpo-container{
+    display: flex;
+    height: 80vh;
+    width: 80vw;
+    
+    background: #e7e7e7;
+    
+}
+
+.container-bottom{
+    display: flex;
+    height: 70vh;
+    width: 100%;
+    background: black;
+    
+}
+
+.container-home{
+    /* background: #1363DF; */
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-apresentacao{
+    /* background: #47B5FF; */
+    background: linear-gradient(405deg, #1e3c72, #2a5298);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-produtos{
+    /* background: #06283D; */
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-servicos{
+    /* background: #1363DF; */
+    background: linear-gradient(405deg, #1e3c72, #2a5298);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-portfolio{
+    /* background: #47B5FF; */
+    background: linear-gradient(135deg, #1e3c72, black);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-suporte{
+    /* background: #06283D; */
+    background: linear-gradient(135deg, var(--cor-inicial), var(--cor-final));
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-faleconosco{
+    /* background: #1363DF; */
+    background: linear-gradient(405deg, var(--cor-inicial), var(--cor-final));
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ctn-imagens-portifolio{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.ctn-trabalho {
+    
+    width: 30%;
+    height: auto;
+    
+    
+  }
+  
+.ctn-trabalho img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    
+  }
+
+/*   BOTÕES */
+
+.btn-whatsapp {
+  bottom: 10px;
+  right: 0px;
+}
+
+.img-logo-social {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  position: fixed;
+  padding: 5px;
+  text-decoration: none;
+}

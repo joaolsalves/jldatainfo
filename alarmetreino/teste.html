@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cronômetro</title>
+    <script>
+      // Insira o código JavaScript aqui
+      // Seleciona o elemento HTML que mostrará o tempo decorrido
+let cronometro = document.getElementById("cronometro");
+
+// Define as variáveis globais para o cronômetro
+let startTime, elapsedTime = 0;
+let intervalo;
+
+// Define a função que atualiza o cronômetro
+function atualizarCronometro() {
+  let elapsed = Date.now() - startTime + elapsedTime;
+  let minutos = Math.floor(elapsed / 60000);
+  let segundos = Math.floor((elapsed % 60000) / 1000);
+  let milissegundos = elapsed % 1000;
+
+  // Adiciona um zero à esquerda se o valor for menor que 10
+  minutos = minutos < 10 ? "0" + minutos : minutos;
+  segundos = segundos < 10 ? "0" + segundos : segundos;
+  milissegundos = milissegundos < 100 ? "0" + milissegundos : milissegundos < 10 ? "00" + milissegundos : milissegundos;
+
+  // Atualiza o texto do elemento HTML
+  cronometro.textContent = minutos + ":" + segundos + "." + milissegundos;
+}
+
+// Define a função que inicia o cronômetro
+function iniciarCronometro() {
+  // Se o cronômetro já estiver em andamento, não faz nada
+  if (intervalo) return;
+
+  // Define o horário de início do cronômetro
+  startTime = Date.now();
+
+  // Define o intervalo que atualiza o cronômetro a cada 10 milissegundos
+  intervalo = setInterval(atualizarCronometro, 10);
+}
+
+// Define a função que pausa o cronômetro
+function pausarCronometro() {
+  // Se o cronômetro já estiver parado, não faz nada
+  if (!intervalo) return;
+
+  // Calcula o tempo decorrido até o momento da pausa
+  elapsedTime += Date.now() - startTime;
+
+  // Limpa o intervalo que atualiza o cronômetro
+  clearInterval(intervalo);
+  intervalo = null;
+}
+
+// Define a função que reinicia o cronômetro
+function reiniciarCronometro() {
+  // Para o cronômetro e limpa as variáveis de tempo
+  pausarCronometro();
+  elapsedTime = 0;
+
+  // Inicia o cronômetro novamente
+  iniciarCronometro();
+}
+
+    </script>
+  </head>
+  <body>
+    <h1>Cronômetro</h1>
+    <p id="cronometro">00:00.000</p>
+    <button onclick="iniciarCronometro()">Iniciar</button>
+    <button onclick="pausarCronometro()">Pausar</button>
+    <button onclick="reiniciarCronometro()">Reiniciar</button>
+  </body>
+</html>

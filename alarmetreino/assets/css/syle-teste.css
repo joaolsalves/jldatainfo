@@ -1,0 +1,44 @@
+body{
+    border: 0px;
+    padding: 0px;
+}
+
+.div-1px{
+
+    background: black;
+    width: 1px;
+    height: 1px;
+
+}
+
+.div-10px{
+
+    background: blue;
+    width: 10px;
+    height: 10px;
+
+}
+
+.div-100px{
+
+    background: orange;
+    width: 100px;
+    height: 100px;
+ 
+}
+
+.div-369px{
+
+    background: pink;
+    width: 369px;
+    height: 369px;
+ 
+}
+
+.div-500px{
+
+    background: orange;
+    width: 500px;
+    height: 500px;
+ 
+}

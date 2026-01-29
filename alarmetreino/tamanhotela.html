@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tamanho da Tela</title>
+  <link rel="stylesheet" href="assets/css/syle-teste.css"/>
+  
+  <script>
+    function exibirTamanhoTela() {
+      var largura = window.innerWidth + ', ' + document.documentElement.clientWidth + ', ' + document.body.clientWidth;
+      var altura = window.innerHeight + ', ' + document.documentElement.clientHeight + ', ' + document.body.clientHeight;
+      
+      
+
+
+      var tamanhoTela = "Largura: " + largura + "px, Altura: " + altura + "px";
+      document.getElementById("tamanhoTela").innerText = tamanhoTela;
+
+      window.innerWidth 
+      document.documentElement.clientWidth
+      document.body.clientWidth;  
+
+      // Obtendo o elemento canvas
+    var canvas = document.getElementById("myCanvas");
+    // Obtendo o contexto de desenho 2D
+    var ctx = canvas.getContext("2d");
+
+    // Desenhar uma linha horizontal
+    ctx.strokeStyle = "blue";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0, 100); // Ponto inicial da linha (x, y)
+    ctx.lineTo(350, 100); // Ponto final da linha (x, y)
+    ctx.stroke();
+
+    }
+
+    function atualizarPagina(){
+
+      
+
+    }
+  </script>
+</head>
+<body onload="exibirTamanhoTela()"> 
+  <h1>Tamanho da Tela</h1>
+  <p id="tamanhoTela"></p>
+
+  <h1>Linha Horizontal em Canvas HTML</h1>
+  
+  <canvas id="myCanvas" width="400" height="200"></canvas>
+
+  <h2>Div 369px</h2>
+  <div class="div-369px"></div>
+
+  <h3>Div com 1px</h3>
+  <div class="div-1px"></div>
+
+  <h3>Div com 10px</h3>
+  <div class="div-10px"></div>
+
+  <h3>Div com 100px</h3>
+  <div class="div-100px"></div>
+
+  <h3>Div com 500px</h3>
+  <div class="div-500px"></div>
+</body>
+</html>
