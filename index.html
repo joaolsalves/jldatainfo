@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    (function () {
+      const languages = navigator.languages || [navigator.language];
+
+      let redirectTo = "/en/index.html";
+
+      for (let lang of languages) {
+        lang = lang.toLowerCase();
+
+        if (lang === "pt-br" || lang.startsWith("pt")) {
+          redirectTo = "/pages/pt-br/index.html";
+          break;
+        }
+
+        if (lang.startsWith("en")) {
+          redirectTo = "/pages/en/index.html";
+          break;
+        }
+      }
+
+      window.location.replace(redirectTo);
+    })();
+  </script>
+</head>
+<body>
+  <noscript>
+    <p>Please select your language:</p>
+    <a href="/pt-br/index.html">Português</a> |
+    <a href="/en/index.html">English</a>
+  </noscript>
+</body>
+</html>
