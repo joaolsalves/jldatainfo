@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exemplo de Keyframe - Abrir da Direita para a Esquerda</title>
+  </head>
+  <body>
+    <button onclick="funcao2()">Iniciar</button>
+
+    <h1 id="id-h1">Em branco</h1>
+    <h2>Timer:</h2>
+    <h2 id="id-h2">00</h2>
+
+    <script>
+
+      let contador = 10;
+
+      function funcao1() {
+
+        contador = 10;
+        
+        return new Promise((resolve) => {
+          intervalId = setInterval(() => {
+            contador--;
+
+            if (contador == 0) {
+              document.getElementById("id-h2").textContent = contador;
+              
+              clearInterval(intervalId);
+              resolve();                 
+              
+              return;
+            }
+
+            document.getElementById("id-h2").textContent =
+              contador;
+          }, 1000);
+
+          
+        });
+      }
+
+      async function funcao2() {
+        const lista = document.querySelector("body");
+
+        await funcao1();
+
+        const novoItem = document.createElement("h6");
+
+        novoItem.textContent = "conteudo";
+
+        lista.appendChild(novoItem);
+      }
+
+      //funcao2();
+    </script>
+  </body>
+</html>

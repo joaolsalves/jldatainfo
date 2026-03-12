@@ -1,0 +1,5 @@
+C:\Projetos\joaolsalves.github.io\dotnet\obj\Debug\net7.0-windows\dotnet.csproj.AssemblyReference.cache
+C:\Projetos\joaolsalves.github.io\dotnet\obj\Debug\net7.0-windows\dotnet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projetos\joaolsalves.github.io\dotnet\obj\Debug\net7.0-windows\dotnet.AssemblyInfoInputs.cache
+C:\Projetos\joaolsalves.github.io\dotnet\obj\Debug\net7.0-windows\dotnet.AssemblyInfo.cs
+C:\Projetos\joaolsalves.github.io\dotnet\obj\Debug\net7.0-windows\dotnet.csproj.CoreCompileInputs.cache

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabata Simples</title>
+    <link rel="stylesheet" href="assets/css/style-index.css" />
+    <link rel="stylesheet" href="assets/css/style-timer.css" />
+
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4380705700215739"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body onload="fnTempoTotal()">
+    <!-- Página de entrada -->  
+
+    <div class="ctn-principal" id="id-ctn-principal">
+      <div
+        class="ctn-header cl-centralizar-conteudo .arrumaDivInputs" onclick="fnDefineTabata()">
+        <h1>TABATA SIMPLES</h1>
+      </div>
+
+      <div class="ctn-preparacao cl-centralizar-conteudo .arrumaDivInputs">
+        <h1>Preparação</h1>
+        <div class="ctn-botao-valor">
+          <button onclick="fnSubtrairTempoPreparacao('id-lbl-tempo-preparacao')">-</button
+          ><label
+            for="lbl-tempo-preparacao"
+            class="arrumaTxtBox"
+            id="id-lbl-tempo-preparacao"
+            >5</label
+          ><button onclick="fnAdicionarTempoPreparacao('id-lbl-tempo-preparacao')">+</button>
+        </div>
+      </div>
+
+      <div class="ctn-exercicio cl-centralizar-conteudo">
+        <h1>Exercício</h1>
+        <div class="ctn-botao-valor">
+          <button onclick="fnSubtrairTempoPreparacao('id-lbl-tempo-exercicio')">-</button
+          ><label
+            for="lbl-tempo-exercicio"
+            class="arrumaTxtBox"
+            id="id-lbl-tempo-exercicio"
+            >20</label
+          ><button onclick="fnAdicionarTempoPreparacao('id-lbl-tempo-exercicio')">+</button>
+        </div>
+      </div>
+
+      <div class="ctn-descanso cl-centralizar-conteudo">
+        <h1>Descanso</h1>
+        <div class="ctn-botao-valor">
+          <button onclick="fnSubtrairTempoPreparacao('id-lbl-tempo-descanso')">-</button
+          ><label
+            for="lbl-tempo-descanso"
+            class="arrumaTxtBox"
+            id="id-lbl-tempo-descanso"
+            >10</label
+          ><button onclick="fnAdicionarTempoPreparacao('id-lbl-tempo-descanso')">+</button>
+        </div>
+      </div>
+
+      <div class="ctn-repeticoes cl-centralizar-conteudo">
+            <h1>Repetições</h1>
+            <div class="ctn-botao-valor">
+            <button onclick="fnSubtrairTempoPreparacao('id-lbl-qtd-repeticoes')">-</button
+            ><label
+                for="lbl-qtd-repeticoes"
+                class="lblQtdRepeticoes arrumaTxtBox"
+                id="id-lbl-qtd-repeticoes"
+                >3</label
+            ><button onclick="fnAdicionarTempoPreparacao('id-lbl-qtd-repeticoes')">+</button>
+            </div>
+      </div>
+
+      <div class="ctn-tempo-total cl-centralizar-conteudo">
+            <label for="lbl-tempo-total" id="id-lbl-tempo-total">
+                00:00:00
+            </label>
+      </div>
+
+      <div class="ctn-iniciar cl-centralizar-conteudo">
+        <button class="btn-iniciar" onclick="fnIniciarTimer()">INICIAR</button>
+      </div>
+
+      <!-- Google AdS -->
+      <div class="ctn-gAds">
+        <fieldset>
+          <legend>Publicidade:</legend>
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4380705700215739"
+            crossorigin="anonymous"
+          ></script>
+          <!-- Horizontal -->
+          <ins
+            class="adsbygoogle"
+            style="display: block"
+            data-ad-client="ca-pub-4380705700215739"
+            data-ad-slot="1600509552"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          >
+          </ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </fieldset>
+      </div>
+    </div>
+
+    <!-- Definição de Tabata -->
+
+    <div
+      class="ctn-define-tabata"
+      id="id-ctn-define-tabata"
+      onclick="fnExibePrincipal()"
+    >
+      <article>
+        <header>
+          <h1>O que é Tabata?</h1>
+        </header>
+        <section>
+          <p>
+            Tabata é um método de treinamento intervalado de alta intensidade
+            (HIIT) que foi desenvolvido pelo Dr. Izumi Tabata, um pesquisador
+            japonês.
+            <br />O método de Tabata consiste em exercícios de alta intensidade
+            realizados por um curto período de tempo, seguidos por um curto
+            período de descanso. <br />Um treino de Tabata típico consiste em
+            oito rodadas de exercícios de 20 segundos de alta intensidade,
+            seguidos por 10 segundos de descanso. <br />Isso equivale a um ciclo
+            de 4 minutos. Os exercícios podem incluir uma variedade de
+            atividades, como flexões, agachamentos, saltos, corrida
+            estacionária, burpees, entre outros. <br />O método de Tabata é
+            considerado um treino muito intenso e desafiador, mas também é muito
+            eficaz para melhorar o condicionamento físico, a resistência
+            cardiovascular, a força muscular e a perda de gordura. É um treino
+            popular entre atletas e entusiastas do fitness que buscam um
+            treinamento curto, mas intenso.
+          </p>
+        </section>
+
+        <footer></footer>
+        <p>
+          Fonte:<br />
+
+          Site oficial do Dr. Izumi Tabata:
+          <a href="http://www.tabataofficial.com/">
+            http://www.tabataofficial.com/ </a
+          ><br />
+          American Council on Exercise (ACE):
+          <a
+            href="https://www.acefitness.org/education-and-resources/professional/expert-articles/5157/tabata-training-4-minute-fat-burning-workouts/"
+            >https://www.acefitness.org/education-and-resources/professional/expert-articles/5157/tabata-training-4-minute-fat-burning-workouts/</a
+          ><br />
+          National Academy of Sports Medicine (NASM):
+          <a
+            href="https://blog.nasm.org/fitness/tabata-training-what-is-it-and-what-are-the-benefits/"
+            >https://blog.nasm.org/fitness/tabata-training-what-is-it-and-what-are-the-benefits/</a
+          ><br />
+          Healthline:
+          <a
+            href="https://www.healthline.com/health/fitness-exercise/tabata-workout"
+            >https://www.healthline.com/health/fitness-exercise/tabata-workout</a
+          ><br />
+          Verywell Fit:
+          <a href="https://www.verywellfit.com/the-tabata-workout-3120725"
+            >https://www.verywellfit.com/the-tabata-workout-3120725</a
+          ><br />
+        </p>
+
+        <p />
+      </article>
+    </div>
+
+    <!-- Inicio do Timer -->
+
+    <div class="ctn-timer" id="id-ctn-timer">
+
+      <div class="ctn-timer-top">
+        <h1 id="teste">Tabata Ultra Simples</h1>
+      </div>
+
+      <div class="ctn-corpo">
+        
+        <div class="ctn-timer-program">
+
+            <div class="texto-tempo-execucao" id="id-texto-tempo-execucao">
+              TIPO DE CONTAGEM: PREP, EXERCÍCIO, DESCANSO
+            </div>
+
+            <div class="valor-tempo-execucao" id="id-valor-tempo-execucao">
+
+            </div>
+
+            <div class="botoes-controle">
+
+              <div class="ctn-btn-stop">
+                <button id="btn-stop" onclick="pararTimer()">Stop</button>
+              </div>
+  
+              <div class="ctn-tbn-pause">
+                <button>Pause</button>
+              </div>
+  
+              <div class="ctn-tbn-play">
+                <button id="btn-play" onclick="retornarTimer()">Play</button>
+              </div>
+  
+            </div>
+
+            <div class="info-decorrido">
+            
+              <div class="volta">
+  
+                <div class="texto-volta">
+                  Voltas
+                </div>
+                <div class="valor-volta">
+  
+                  <lbl-volta-completa id="id-lbl-volta-atual">
+                    01
+                  </lbl-volta-completa> /
+                  <lbl-volta-total id="id-lbl-volta-total">
+  
+                  </lbl-volta-total>
+  
+                </div>
+              </div>
+  
+              <div class="tempos">
+  
+                <div class="texto-tempos">
+                  Tempo
+                </div>
+  
+                <div class="valor-tempos">
+  
+                  <lbl-tempo-decorrido id="lbl-tempo-decorrido">
+                    00:00:00
+                  </lbl-tempo-decorrido> /
+                  <lbl-tempo-total id="id-lbl-tempo-total-timer">
+                    3:00
+                  </lbl-tempo-total>
+  
+              </div>
+  
+            </div>
+
+        </div>
+        
+      
+      
+      </div>
+
+      <div class="btn-fechar-timer" onclick="fnTimerSair()">
+        <h1>SAIR</h1>
+      </div>
+    </div>
+
+    <script src="assets/js/script-inicial.js"></script>
+    <script src="assets/js/timer.js"></script>
+    <script src="assets/js/escalona-timer.js"></script>
+  </body>
+</html>
