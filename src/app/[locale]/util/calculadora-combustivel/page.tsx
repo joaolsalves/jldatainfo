@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function FuelCalculatorPage() {
   const params = useParams();
-  const locale = (params.locale as string) as Locale;
+  const locale = ((params?.locale as string) || "pt-br") as Locale;
   const dict = getDictionary(locale);
   const isPtBr = locale === "pt-br";
 

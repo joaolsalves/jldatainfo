@@ -3,9 +3,8 @@ import Image from "next/image";
 import RevealSection from "@/components/RevealSection";
 import ContactForm from "@/components/ContactForm";
 
-export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: localeParam } = await params;
-  const locale = localeParam as Locale;
+export default function HomePage({ params }: { params: { locale: string } }) {
+  const locale = params.locale as Locale;
   const dict = getDictionary(locale);
 
   const whatsappMsg = locale === "pt-br"

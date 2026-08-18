@@ -1,9 +1,8 @@
 import { type Locale, getDictionary } from "@/lib/i18n";
 import Link from "next/link";
 
-export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: localeParam } = await params;
-  const locale = localeParam as Locale;
+export default function PrivacyPage({ params }: { params: { locale: string } }) {
+  const locale = params.locale as Locale;
   const dict = getDictionary(locale);
   const isPtBr = locale === "pt-br";
 
