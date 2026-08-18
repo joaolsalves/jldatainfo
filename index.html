@@ -7,18 +7,18 @@
     (function () {
       const languages = navigator.languages || [navigator.language];
 
-      let redirectTo = "/en/index.html";
+      let redirectTo = "/pages/en/";
 
       for (let lang of languages) {
         lang = lang.toLowerCase();
 
         if (lang === "pt-br" || lang.startsWith("pt")) {
-          redirectTo = "/pages/pt-br/index.html";
+          redirectTo = "/pages/pt-br/";
           break;
         }
 
         if (lang.startsWith("en")) {
-          redirectTo = "/pages/en/index.html";
+          redirectTo = "/pages/en/";
           break;
         }
       }
@@ -30,8 +30,8 @@
 <body>
   <noscript>
     <p>Please select your language:</p>
-    <a href="/pt-br/index.html">Português</a> |
-    <a href="/en/index.html">English</a>
+    <a href="/pages/pt-br/">Português</a> |
+    <a href="/pages/en/">English</a>
   </noscript>
 </body>
 </html>

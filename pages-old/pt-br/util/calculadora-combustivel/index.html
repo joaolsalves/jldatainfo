@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jldatainfo | Calculadora de Custo de Combustível</title>
+  <meta name="description" content="Calcule o custo de combustível por viagem com base na distância, consumo do veículo e preço do litro." />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <style>
+    .calc-page { padding: 130px 0 92px; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 0.9rem; margin-bottom: 32px; transition: color 0.25s; }
+    .back-link:hover { color: #fff; }
+    .calc-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .calc-panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow); }
+    .calc-panel h2 { font-size: 1.4rem; margin-bottom: 24px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.95rem; }
+    .form-group .hint { display: block; font-size: 0.82rem; color: var(--muted); margin-top: 5px; }
+    .input-prefix { position: relative; }
+    .input-prefix span { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: 700; pointer-events: none; font-size: 0.95rem; }
+    .input-prefix input { padding-left: 34px; }
+    .input-suffix { position: relative; }
+    .input-suffix span { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: 700; pointer-events: none; font-size: 0.95rem; }
+    .input-suffix input { padding-right: 60px; }
+    .radio-group { display: flex; gap: 12px; }
+    .radio-option { flex: 1; position: relative; }
+    .radio-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .radio-option label { display: flex; align-items: center; justify-content: center; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); cursor: pointer; transition: 0.25s; font-weight: 600; font-size: 0.9rem; margin: 0; }
+    .radio-option input[type="radio"]:checked + label { background: rgba(13,71,255,0.22); border-color: rgba(86,133,255,0.5); color: #fff; }
+    .radio-option label:hover { background: rgba(255,255,255,0.06); }
+    .result-card { background: linear-gradient(135deg, rgba(13,71,255,0.18), rgba(8,14,30,0.9)); border: 1px solid rgba(86,133,255,0.3); border-radius: var(--radius); padding: 22px; margin-top: 8px; }
+    .result-main { font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .result-label { color: #8fb1ff; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px; }
+    .result-breakdown { display: grid; gap: 10px; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.05); }
+    .result-row .r-label { color: var(--muted); font-size: 0.9rem; }
+    .result-row .r-value { font-weight: 700; color: #fff; }
+    .result-row .r-value.highlight { color: #75a2ff; }
+    .comparison-area { margin-top: 24px; }
+    .comparison-area h3 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--muted); }
+    .compare-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 10px; }
+    .compare-card h4 { font-size: 0.9rem; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+    .compare-card .compare-row { display: flex; justify-content: space-between; font-size: 0.88rem; }
+    .compare-card .compare-row span:last-child { font-weight: 700; color: #75a2ff; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+    .optional-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius); padding: 18px 20px; margin-top: 4px; }
+    .optional-section summary { cursor: pointer; font-weight: 700; font-size: 0.9rem; color: var(--muted); list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .optional-section summary::-webkit-details-marker { display: none; }
+    .optional-section summary::after { content: '+'; font-size: 1.2rem; color: var(--muted); transition: transform 0.25s; }
+    .optional-section[open] summary::after { transform: rotate(45deg); }
+    .optional-section .inner { margin-top: 16px; }
+    .empty-state { text-align: center; padding: 40px 0; color: var(--muted); }
+    .empty-state .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+    .banners-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 32px; padding-bottom: 12px; }
+    .banner-slot { border-radius: var(--radius); border: 1px solid var(--border); background: var(--card); overflow: hidden; position: relative; min-height: 140px; }
+    .banner-label { display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); padding: 10px 14px 0; opacity: 0.6; }
+    .banner-adsense ins { display: block; min-height: 100px; }
+    .sponsor-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 20px; text-align: center; height: calc(100% - 32px); }
+    .sponsor-icon { font-size: 2rem; line-height: 1; }
+    .sponsor-text { font-weight: 700; font-size: 1rem; color: #fff; }
+    .sponsor-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.5; max-width: 26ch; }
+    .banner-sponsor { border-style: dashed; border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+    @media (max-width: 860px) { .calc-wrap, .banners-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="container nav">
+      <a href="/pages/pt-br/" class="logo" aria-label="jldatainfo início">
+        <span class="logo-mark">JL</span>
+        <span>jldatainfo</span>
+      </a>
+      <nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="/pages/pt-br/#inicio">Início</a></li>
+          <li><a href="/pages/pt-br/#servicos">Serviços</a></li>
+          <li><a href="/pages/pt-br/#portfolio">Portfólio</a></li>
+          <li><a href="/pages/pt-br/#contato">Contato</a></li>
+          <li><a href="/pages/pt-br/util/">Utilitários</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="calc-page">
+      <div class="container">
+        <a href="/pages/pt-br/util/" class="back-link">← Voltar para Utilitários</a>
+
+        <div class="section-heading reveal visible" style="text-align:left; margin-bottom:32px; max-width:100%;">
+          <div class="eyebrow">Utilitários</div>
+          <h1 style="font-size:clamp(1.8rem,3.5vw,2.8rem); margin-bottom:10px;">⛽ Custo de Combustível por Viagem</h1>
+          <p style="max-width:60ch;">Calcule quanto vai gastar com combustível com base na distância, consumo do veículo e preço do litro.</p>
+        </div>
+
+        <div class="calc-wrap">
+          <div class="calc-panel reveal">
+            <h2>Dados da viagem</h2>
+
+            <div class="form-group">
+              <label for="distancia">Distância da viagem</label>
+              <div class="input-suffix"><span>km</span>
+                <input type="number" id="distancia" min="1" step="1" placeholder="300" value="300" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="consumo">Consumo médio do veículo</label>
+              <div class="input-suffix"><span>km/L</span>
+                <input type="number" id="consumo" min="0.1" step="0.1" placeholder="12" value="12" />
+              </div>
+              <span class="hint">Média entre cidade e estrada do seu veículo.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="precoCombustivel">Preço do combustível</label>
+              <div class="input-prefix"><span>R$</span>
+                <input type="number" id="precoCombustivel" min="0.01" step="0.01" placeholder="6,00" value="6" />
+              </div>
+              <span class="hint">Preço por litro.</span>
+            </div>
+
+            <div class="form-group">
+              <label>Tipo de viagem</label>
+              <div class="radio-group" role="radiogroup" aria-label="Tipo de viagem">
+                <div class="radio-option">
+                  <input type="radio" id="idaOnly" name="tipoViagem" value="ida" checked />
+                  <label for="idaOnly">Somente ida</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="idaVolta" name="tipoViagem" value="idavolta" />
+                  <label for="idaVolta">Ida e volta</label>
+                </div>
+              </div>
+            </div>
+
+            <hr class="divider" />
+
+            <details class="optional-section">
+              <summary>Opções extras (pedágio, passageiros)</summary>
+              <div class="inner">
+                <div class="form-group">
+                  <label for="pedagio">Pedágio total</label>
+                  <div class="input-prefix"><span>R$</span>
+                    <input type="number" id="pedagio" min="0" step="0.01" placeholder="0,00" value="0" />
+                  </div>
+                  <span class="hint">Total de pedágios na rota (ida). Para ida e volta será dobrado automaticamente.</span>
+                </div>
+                <div class="form-group">
+                  <label for="passageiros">Dividir entre passageiros</label>
+                  <div class="input-suffix"><span>pessoas</span>
+                    <input type="number" id="passageiros" min="1" step="1" placeholder="1" value="1" />
+                  </div>
+                  <span class="hint">Número de pessoas dividindo o custo total.</span>
+                </div>
+              </div>
+            </details>
+
+            <button class="btn btn-primary" id="calcBtn" style="width:100%; margin-top:20px;">Calcular</button>
+          </div>
+
+          <div class="calc-panel reveal" id="resultPanel">
+            <h2>Resultado</h2>
+            <div id="emptyState" class="empty-state">
+              <div class="empty-icon">🗺️</div>
+              <p>Preencha os dados da viagem e clique em <strong>Calcular</strong>.</p>
+            </div>
+            <div id="resultContent" style="display:none;">
+              <div class="result-card">
+                <div class="result-main" id="resTotalViagem">R$ 0,00</div>
+                <div class="result-label" id="resTotalLabel">Custo total da viagem</div>
+                <div class="result-breakdown">
+                  <div class="result-row"><span class="r-label">Distância total</span><span class="r-value" id="resDistancia">0 km</span></div>
+                  <div class="result-row"><span class="r-label">Litros necessários</span><span class="r-value" id="resLitros">0 L</span></div>
+                  <div class="result-row"><span class="r-label">Custo combustível</span><span class="r-value" id="resCombustivel">R$ 0,00</span></div>
+                  <div class="result-row" id="rowPedagio" style="display:none;"><span class="r-label">Pedágio(s)</span><span class="r-value" id="resPedagio">R$ 0,00</span></div>
+                  <div class="result-row" id="rowPorPessoa" style="display:none;"><span class="r-label">Por pessoa</span><span class="r-value highlight" id="resPorPessoa">R$ 0,00</span></div>
+                </div>
+              </div>
+              <div class="comparison-area">
+                <h3>Comparativo de combustíveis</h3>
+                <div class="compare-card" id="compareEtanol" style="display:none;">
+                  <h4>⚖️ Vantagem do etanol</h4>
+                  <div class="compare-row"><span>Preço do etanol que compensa</span><span id="etanolLimite">—</span></div>
+                  <div class="compare-row" style="margin-top:6px; font-size:0.82rem; color:var(--muted);"><span>Use etanol se o litro custar menos que 70% do valor da gasolina</span></div>
+                </div>
+                <div class="compare-card">
+                  <h4>📊 Custo por km rodado</h4>
+                  <div class="compare-row"><span>Custo por km</span><span id="custoPorKm">—</span></div>
+                  <div class="compare-row" style="margin-top:8px;"><span>Custo por 100 km</span><span id="custoPor100km">—</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banners-row">
+          <div class="banner-slot banner-adsense reveal">
+            <span class="banner-label">Publicidade</span>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+          <div class="banner-slot banner-sponsor reveal">
+            <span class="banner-label">Patrocinador</span>
+            <div class="sponsor-placeholder">
+              <div class="sponsor-icon">🤝</div>
+              <p class="sponsor-text">Seu anúncio aqui</p>
+              <p class="sponsor-sub">Entre em contato para patrocinar esta ferramenta</p>
+              <a href="/pages/pt-br/#contato" class="btn btn-outline" style="font-size:0.85rem; min-height:40px; padding:0 16px;">Falar conosco</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 jldatainfo. Todos os direitos reservados.</p>
+      <p>Criação de sites, landing pages, hospedagem e domínio.</p>
+    </div>
+  </footer>
+
+  <div class="img-logo-social">
+    <a href="https://wa.me/5521980772874" target="_blank" rel="noopener noreferrer" class="btn-whatsapp zindex-1">
+      <img src="/assets/img/logo-whatsapp.png" class="img-logo-social btn-whatsapp" alt="WhatsApp" />
+    </a>
+  </div>
+
+  <script>
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { navLinks.classList.remove('active'); menuToggle.classList.remove('active'); menuToggle.setAttribute('aria-expanded','false'); });
+    });
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 30); });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = `${i * 0.1}s`; observer.observe(el); });
+
+    function fmt(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+    function fmtNum(v, d = 2) { return v.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+
+    document.getElementById('calcBtn').addEventListener('click', calcular);
+    calcular();
+    document.querySelectorAll('input[type="number"]').forEach(inp => { inp.addEventListener('keydown', e => { if (e.key === 'Enter') calcular(); }); });
+
+    function calcular() {
+      const distanciaIda = parseFloat(document.getElementById('distancia').value) || 0;
+      const consumo = parseFloat(document.getElementById('consumo').value) || 0;
+      const preco = parseFloat(document.getElementById('precoCombustivel').value) || 0;
+      const tipoViagem = document.querySelector('input[name="tipoViagem"]:checked').value;
+      const pedagioIda = parseFloat(document.getElementById('pedagio').value) || 0;
+      const passageiros = parseInt(document.getElementById('passageiros').value) || 1;
+
+      if (!distanciaIda || !consumo || !preco) {
+        const missing = [];
+        if (!distanciaIda) missing.push('distância');
+        if (!consumo) missing.push('consumo');
+        if (!preco) missing.push('preço do combustível');
+        alert('Preencha os campos: ' + missing.join(', ') + '.');
+        return;
+      }
+
+      const mult = tipoViagem === 'idavolta' ? 2 : 1;
+      const distanciaTotal = distanciaIda * mult;
+      const pedagioTotal = pedagioIda * mult;
+      const litros = distanciaTotal / consumo;
+      const custoCombustivel = litros * preco;
+      const custoTotal = custoCombustivel + pedagioTotal;
+
+      document.getElementById('resTotalViagem').textContent = fmt(custoTotal);
+      document.getElementById('resTotalLabel').textContent = tipoViagem === 'idavolta' ? 'Custo total (ida e volta)' : 'Custo total (somente ida)';
+      document.getElementById('resDistancia').textContent = fmtNum(distanciaTotal, 0) + ' km';
+      document.getElementById('resLitros').textContent = fmtNum(litros) + ' L';
+      document.getElementById('resCombustivel').textContent = fmt(custoCombustivel);
+
+      const rowPedagio = document.getElementById('rowPedagio');
+      if (pedagioTotal > 0) { rowPedagio.style.display = 'flex'; document.getElementById('resPedagio').textContent = fmt(pedagioTotal); }
+      else rowPedagio.style.display = 'none';
+
+      const rowPorPessoa = document.getElementById('rowPorPessoa');
+      if (passageiros > 1) { rowPorPessoa.style.display = 'flex'; document.getElementById('resPorPessoa').textContent = fmt(custoTotal / passageiros); }
+      else rowPorPessoa.style.display = 'none';
+
+      const cpk = custoCombustivel / distanciaTotal;
+      document.getElementById('custoPorKm').textContent = fmt(cpk);
+      document.getElementById('custoPor100km').textContent = fmt(cpk * 100);
+      document.getElementById('compareEtanol').style.display = 'block';
+      document.getElementById('etanolLimite').textContent = fmt(preco * 0.7) + '/L';
+
+      document.getElementById('emptyState').style.display = 'none';
+      document.getElementById('resultContent').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

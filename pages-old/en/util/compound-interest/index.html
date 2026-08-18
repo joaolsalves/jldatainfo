@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jldatainfo | Compound Interest Calculator</title>
+  <meta name="description" content="Simulate investment growth with compound interest. Enter initial capital, monthly contributions, rate and time period." />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <style>
+    .calc-page { padding: 130px 0 92px; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 0.9rem; margin-bottom: 32px; transition: color 0.25s; }
+    .back-link:hover { color: #fff; }
+    .calc-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .calc-panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow); }
+    .calc-panel h2 { font-size: 1.4rem; margin-bottom: 24px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.95rem; }
+    .form-group .hint { display: block; font-size: 0.82rem; color: var(--muted); margin-top: 5px; }
+    .input-prefix { position: relative; }
+    .input-prefix span { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: 700; pointer-events: none; font-size: 0.95rem; }
+    .input-prefix input { padding-left: 34px; }
+    .input-suffix { position: relative; }
+    .input-suffix span { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: 700; pointer-events: none; font-size: 0.95rem; }
+    .input-suffix input { padding-right: 36px; }
+    .input-with-unit { display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; background: rgba(255,255,255,0.04); overflow: hidden; transition: border-color 0.3s ease, background 0.3s ease; }
+    .input-with-unit:focus-within { border-color: rgba(86,133,255,0.6); background: rgba(255,255,255,0.06); }
+    .input-with-unit input { flex: 1; min-width: 0; border: none; background: transparent; padding: 14px 4px 14px 16px; color: #fff; outline: none; transform: none; border-radius: 0; }
+    .input-with-unit input:focus { border-color: transparent; background: transparent; transform: none; }
+    .input-with-unit span { flex-shrink: 0; padding: 0 14px 0 4px; color: var(--muted); font-weight: 700; font-size: 0.9rem; pointer-events: none; }
+    .radio-group { display: flex; gap: 12px; }
+    .radio-option { flex: 1; position: relative; }
+    .radio-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .radio-option label { display: flex; align-items: center; justify-content: center; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); cursor: pointer; transition: 0.25s; font-weight: 600; font-size: 0.9rem; margin: 0; }
+    .radio-option input[type="radio"]:checked + label { background: rgba(13,71,255,0.22); border-color: rgba(86,133,255,0.5); color: #fff; }
+    .radio-option label:hover { background: rgba(255,255,255,0.06); }
+    .result-card { background: linear-gradient(135deg, rgba(13,71,255,0.18), rgba(8,14,30,0.9)); border: 1px solid rgba(86,133,255,0.3); border-radius: var(--radius); padding: 22px; margin-top: 8px; }
+    .result-main { font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .result-label { color: #8fb1ff; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px; }
+    .result-breakdown { display: grid; gap: 10px; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.05); }
+    .result-row .r-label { color: var(--muted); font-size: 0.9rem; }
+    .result-row .r-value { font-weight: 700; color: #fff; }
+    .result-row .r-value.highlight { color: #75a2ff; }
+    .chart-area { margin-top: 24px; }
+    .chart-area h3 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--muted); }
+    .bar-chart { display: flex; flex-direction: column; gap: 8px; }
+    .bar-item { display: grid; grid-template-columns: 80px 1fr 120px; align-items: center; gap: 10px; }
+    .bar-year { font-size: 0.82rem; color: var(--muted); text-align: right; }
+    .bar-track { height: 12px; border-radius: 999px; background: rgba(255,255,255,0.06); overflow: hidden; position: relative; }
+    .bar-fill-total { position: absolute; left: 0; top: 0; height: 100%; background: linear-gradient(90deg, rgba(86,133,255,0.45), #4d8bff); border-radius: 999px; transition: width 0.6s ease; }
+    .bar-fill-invested { position: absolute; left: 0; top: 0; height: 100%; background: rgba(86,133,255,0.45); border-radius: 999px; transition: width 0.6s ease; }
+    .bar-value { font-size: 0.82rem; font-weight: 700; color: #fff; text-align: right; }
+    .empty-state { text-align: center; padding: 40px 0; color: var(--muted); }
+    .empty-state .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+    .banners-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 32px; padding-bottom: 12px; }
+    .banner-slot { border-radius: var(--radius); border: 1px solid var(--border); background: var(--card); overflow: hidden; position: relative; min-height: 140px; }
+    .banner-label { display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); padding: 10px 14px 0; opacity: 0.6; }
+    .banner-adsense ins { display: block; min-height: 100px; }
+    .sponsor-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 20px; text-align: center; height: calc(100% - 32px); }
+    .sponsor-icon { font-size: 2rem; line-height: 1; }
+    .sponsor-text { font-weight: 700; font-size: 1rem; color: #fff; }
+    .sponsor-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.5; max-width: 26ch; }
+    .banner-sponsor { border-style: dashed; border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+    @media (max-width: 860px) { .calc-wrap, .banners-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="container nav">
+      <a href="/pages/en/" class="logo" aria-label="jldatainfo home">
+        <span class="logo-mark">JL</span>
+        <span>jldatainfo</span>
+      </a>
+      <nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="/pages/en/#home">Home</a></li>
+          <li><a href="/pages/en/#services">Services</a></li>
+          <li><a href="/pages/en/#portfolio">Portfolio</a></li>
+          <li><a href="/pages/en/#contact">Contact</a></li>
+          <li><a href="/pages/en/util/">Utilities</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="calc-page">
+      <div class="container">
+        <a href="/pages/en/util/" class="back-link">← Back to Utilities</a>
+
+        <div class="section-heading reveal visible" style="text-align:left; margin-bottom:32px; max-width:100%;">
+          <div class="eyebrow">Utilities</div>
+          <h1 style="font-size:clamp(1.8rem,3.5vw,2.8rem); margin-bottom:10px;">💰 Compound Interest Calculator</h1>
+          <p style="max-width:60ch;">Simulate how your investment grows with an initial amount, monthly contributions and compound interest.</p>
+        </div>
+
+        <div class="calc-wrap">
+          <div class="calc-panel reveal">
+            <h2>Parameters</h2>
+
+            <div class="form-group">
+              <label for="capital">Initial amount</label>
+              <div class="input-prefix"><span>$</span>
+                <input type="number" id="capital" min="0" step="0.01" placeholder="1000.00" value="1000" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="aporte">Monthly contribution</label>
+              <div class="input-prefix"><span>$</span>
+                <input type="number" id="aporte" min="0" step="0.01" placeholder="500.00" value="500" />
+              </div>
+              <span class="hint">Leave 0 for no additional contributions.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="taxa">Interest rate</label>
+              <div class="input-suffix"><span>%</span>
+                <input type="number" id="taxa" min="0.01" step="0.01" placeholder="1.00" value="1" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Rate period</label>
+              <div class="radio-group" role="radiogroup" aria-label="Rate period">
+                <div class="radio-option">
+                  <input type="radio" id="periodoMensal" name="periodo" value="mensal" checked />
+                  <label for="periodoMensal">Monthly</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="periodoAnual" name="periodo" value="anual" />
+                  <label for="periodoAnual">Annual</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Time period</label>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <div class="input-with-unit">
+                  <input type="number" id="prazoAnos" min="0" step="1" placeholder="0" value="2" />
+                  <span>years</span>
+                </div>
+                <div class="input-with-unit">
+                  <input type="number" id="prazoMeses" min="0" step="1" placeholder="0" value="0" />
+                  <span>months</span>
+                </div>
+              </div>
+              <span class="hint">Fill in years, months or both. e.g. 1 year + 6 months = 18 months.</span>
+            </div>
+
+            <button class="btn btn-primary" id="calcBtn" style="width:100%; margin-top:8px;">Calculate</button>
+          </div>
+
+          <div class="calc-panel reveal" id="resultPanel">
+            <h2>Result</h2>
+            <div id="emptyState" class="empty-state">
+              <div class="empty-icon">📈</div>
+              <p>Fill in the parameters and click <strong>Calculate</strong> to see the projection.</p>
+            </div>
+            <div id="resultContent" style="display:none;">
+              <div class="result-card">
+                <div class="result-main" id="resTotal">$ 0.00</div>
+                <div class="result-label">Final balance</div>
+                <div class="result-breakdown">
+                  <div class="result-row"><span class="r-label">Initial amount</span><span class="r-value" id="resCapital">$ 0.00</span></div>
+                  <div class="result-row"><span class="r-label">Total invested</span><span class="r-value" id="resInvestido">$ 0.00</span></div>
+                  <div class="result-row"><span class="r-label">Total interest earned</span><span class="r-value highlight" id="resJuros">$ 0.00</span></div>
+                  <div class="result-row"><span class="r-label">Return</span><span class="r-value highlight" id="resRendimento">0%</span></div>
+                </div>
+              </div>
+              <div class="chart-area">
+                <h3>Growth over time</h3>
+                <div class="bar-chart" id="barChart"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banners-row">
+          <div class="banner-slot banner-adsense reveal">
+            <span class="banner-label">Advertisement</span>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+          <div class="banner-slot banner-sponsor reveal">
+            <span class="banner-label">Sponsor</span>
+            <div class="sponsor-placeholder">
+              <div class="sponsor-icon">🤝</div>
+              <p class="sponsor-text">Your ad here</p>
+              <p class="sponsor-sub">Get in touch to sponsor this tool</p>
+              <a href="/pages/en/#contact" class="btn btn-outline" style="font-size:0.85rem; min-height:40px; padding:0 16px;">Contact us</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 jldatainfo. All rights reserved.</p>
+      <p>Websites, landing pages, hosting and domain solutions for growing businesses.</p>
+    </div>
+  </footer>
+
+  <div class="img-logo-social">
+    <a href="https://wa.me/5521980772874" target="_blank" rel="noopener noreferrer" class="btn-whatsapp zindex-1">
+      <img src="/assets/img/logo-whatsapp.png" class="img-logo-social btn-whatsapp" alt="WhatsApp" />
+    </a>
+  </div>
+
+  <script>
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { navLinks.classList.remove('active'); menuToggle.classList.remove('active'); menuToggle.setAttribute('aria-expanded','false'); });
+    });
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 30); });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = `${i * 0.1}s`; observer.observe(el); });
+
+    function fmt(v) { return v.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); }
+
+    document.getElementById('calcBtn').addEventListener('click', calcular);
+    document.querySelectorAll('input[type="number"]').forEach(inp => { inp.addEventListener('keydown', e => { if (e.key === 'Enter') calcular(); }); });
+
+    function calcular() {
+      const capital = parseFloat(document.getElementById('capital').value) || 0;
+      const aporte  = parseFloat(document.getElementById('aporte').value)  || 0;
+      let taxa = parseFloat(document.getElementById('taxa').value) || 0;
+      const periodo = document.querySelector('input[name="periodo"]:checked').value;
+      const anos = parseInt(document.getElementById('prazoAnos').value) || 0;
+      const mesesExtra = parseInt(document.getElementById('prazoMeses').value) || 0;
+      const meses = anos * 12 + mesesExtra;
+
+      if (meses <= 0 || taxa <= 0) { alert('Please enter valid values for rate and time period.'); return; }
+
+      taxa = periodo === 'anual' ? Math.pow(1 + taxa / 100, 1 / 12) - 1 : taxa / 100;
+
+      const fator = Math.pow(1 + taxa, meses);
+      const total = capital * fator + (taxa > 0 ? aporte * ((fator - 1) / taxa) : aporte * meses);
+      const totalInvestido = capital + aporte * meses;
+      const totalJuros = total - totalInvestido;
+      const rendimento = totalInvestido > 0 ? (totalJuros / totalInvestido) * 100 : 0;
+
+      document.getElementById('resTotal').textContent = fmt(total);
+      document.getElementById('resCapital').textContent = fmt(capital);
+      document.getElementById('resInvestido').textContent = fmt(totalInvestido);
+      document.getElementById('resJuros').textContent = fmt(totalJuros);
+      document.getElementById('resRendimento').textContent = rendimento.toFixed(2) + '%';
+
+      buildChart(capital, aporte, taxa, meses, total);
+      document.getElementById('emptyState').style.display = 'none';
+      document.getElementById('resultContent').style.display = 'block';
+    }
+
+    function buildChart(capital, aporte, taxa, meses, totalFinal) {
+      const chart = document.getElementById('barChart');
+      chart.innerHTML = '';
+      const steps = Math.min(12, meses);
+      const step = Math.ceil(meses / steps);
+      const milestones = [];
+      for (let m = step; m <= meses; m += step) milestones.push(m);
+      if (milestones[milestones.length - 1] !== meses) milestones.push(meses);
+
+      milestones.forEach(m => {
+        const fator = Math.pow(1 + taxa, m);
+        const total = capital * fator + (taxa > 0 ? aporte * ((fator - 1) / taxa) : aporte * m);
+        const invested = capital + aporte * m;
+        const widthTotal    = (total / totalFinal) * 100;
+        const widthInvested = (invested / totalFinal) * 100;
+        const label = meses > 24 ? (m % 12 === 0 ? `Year ${m / 12}` : `${m}mo`) : `${m} ${m === 1 ? 'month' : 'months'}`;
+
+        const item = document.createElement('div');
+        item.className = 'bar-item';
+        item.innerHTML = `
+          <span class="bar-year">${label}</span>
+          <div class="bar-track">
+            <div class="bar-fill-total" style="width:${widthTotal}%">
+              <div class="bar-fill-invested" style="width:${(widthInvested / widthTotal) * 100}%"></div>
+            </div>
+          </div>
+          <span class="bar-value">${fmt(total)}</span>`;
+        chart.appendChild(item);
+      });
+    }
+  </script>
+</body>
+</html>

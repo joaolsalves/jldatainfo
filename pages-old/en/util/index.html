@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jldatainfo | Utilities</title>
+  <meta name="description" content="Free online tools: compound interest calculator, fuel cost calculator and more coming soon." />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <style>
+    .util-hero { padding: 140px 0 70px; text-align: center; }
+    .util-hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 16px; }
+    .util-hero h1 span { background: linear-gradient(90deg, #ffffff, #75a2ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .util-hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 56ch; margin: 0 auto; }
+    .util-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding-bottom: 92px; }
+    .util-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; display: flex; flex-direction: column; gap: 14px; }
+    .util-card:hover { transform: translateY(-8px); border-color: rgba(86, 133, 255, 0.35); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.38); }
+    .util-card .icon { margin-bottom: 0; }
+    .util-card h3 { font-size: 1.2rem; }
+    .util-card p { color: var(--muted); line-height: 1.65; flex: 1; }
+    .util-card .btn { align-self: flex-start; font-size: 0.9rem; min-height: 44px; padding: 0 18px; }
+    .util-card.coming-soon { opacity: 0.5; pointer-events: none; }
+    .tag-soon { display: inline-block; font-size: 0.8rem; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid rgba(255,255,255,0.1); }
+    @media (max-width: 980px) { .util-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .util-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="container nav">
+      <a href="/pages/en/" class="logo" aria-label="jldatainfo home">
+        <span class="logo-mark">JL</span>
+        <span>jldatainfo</span>
+      </a>
+      <nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="/pages/en/#home">Home</a></li>
+          <li><a href="/pages/en/#services">Services</a></li>
+          <li><a href="/pages/en/#portfolio">Portfolio</a></li>
+          <li><a href="/pages/en/#contact">Contact</a></li>
+          <li><a href="/pages/en/util/" aria-current="page">Utilities</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="util-hero">
+      <div class="container">
+        <div class="badge reveal visible">Free tools</div>
+        <h1 class="reveal visible">Online <span>utilities</span></h1>
+        <p class="reveal visible">Practical calculators for everyday use. Fast, no sign-up required, and straight to the point.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="util-grid">
+          <article class="util-card reveal">
+            <div class="icon">💰</div>
+            <h3>Compound Interest Calculator</h3>
+            <p>Simulate investment growth with monthly contributions, custom interest rate and time period.</p>
+            <a href="/pages/en/util/compound-interest/" class="btn btn-primary">Open calculator</a>
+          </article>
+
+          <article class="util-card reveal">
+            <div class="icon">⛽</div>
+            <h3>Fuel Cost per Trip</h3>
+            <p>Calculate how much you'll spend on fuel based on distance, vehicle consumption and price per liter.</p>
+            <a href="/pages/en/util/fuel-cost/" class="btn btn-primary">Open calculator</a>
+          </article>
+
+          <article class="util-card coming-soon reveal">
+            <div class="icon">📊</div>
+            <h3>Coming soon</h3>
+            <p>More useful tools on the way.</p>
+            <span class="tag-soon">Coming soon</span>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 jldatainfo. All rights reserved.</p>
+      <p>Websites, landing pages, hosting and domain solutions for growing businesses.</p>
+    </div>
+  </footer>
+
+  <div class="img-logo-social">
+    <a href="https://wa.me/5521980772874" target="_blank" rel="noopener noreferrer" class="btn-whatsapp zindex-1">
+      <img src="/assets/img/logo-whatsapp.png" class="img-logo-social btn-whatsapp" alt="WhatsApp" />
+    </a>
+  </div>
+
+  <script>
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.08}s`;
+      observer.observe(el);
+    });
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 30);
+    });
+  </script>
+</body>
+</html>

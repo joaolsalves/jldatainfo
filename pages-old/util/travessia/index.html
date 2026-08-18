@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Planejador</title><link rel="stylesheet" href="style.css"></head><body><div class="c"><h2>Planejador de Travessia</h2>
+<label>Distância (km)<input id=d type=number></label>
+<label>Vento (nós)<input id=v type=number></label>
+<label>Aproveitamento (%)<input id=a type=number value=60></label>
+<label>Direção<select id=dir><option>Orça Fechada</option><option>Orça Aberta</option><option selected>Través</option><option>Alheta</option><option>Popa</option></select></label>
+<label>Corrente<select id=ct><option>Nenhuma</option><option>A favor</option><option>Contra</option></select></label>
+<label>Intensidade corrente (nós)<input id=ci type=number value=1 step=0.1></label>
+<label>Perfil <input id=p type=range min=-15 max=10 value=0><span id=pv>Normal</span></label>
+<button onclick="calc()">Calcular</button><pre id=o></pre></div><script src="app.js"></script></body></html>

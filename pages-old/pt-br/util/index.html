@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jldatainfo | Utilitários</title>
+  <meta name="description" content="Ferramentas gratuitas: calculadora de juros compostos, custo de combustível por viagem e muito mais." />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <style>
+    .util-hero { padding: 140px 0 70px; text-align: center; }
+    .util-hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 16px; }
+    .util-hero h1 span { background: linear-gradient(90deg, #ffffff, #75a2ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .util-hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 56ch; margin: 0 auto; }
+    .util-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding-bottom: 92px; }
+    .util-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; display: flex; flex-direction: column; gap: 14px; }
+    .util-card:hover { transform: translateY(-8px); border-color: rgba(86, 133, 255, 0.35); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.38); }
+    .util-card .icon { margin-bottom: 0; }
+    .util-card h3 { font-size: 1.2rem; }
+    .util-card p { color: var(--muted); line-height: 1.65; flex: 1; }
+    .util-card .btn { align-self: flex-start; font-size: 0.9rem; min-height: 44px; padding: 0 18px; }
+    .util-card.coming-soon { opacity: 0.5; pointer-events: none; }
+    .tag-soon { display: inline-block; font-size: 0.8rem; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid rgba(255,255,255,0.1); }
+    @media (max-width: 980px) { .util-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .util-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="container nav">
+      <a href="/pages/pt-br/" class="logo" aria-label="jldatainfo início">
+        <span class="logo-mark">JL</span>
+        <span>jldatainfo</span>
+      </a>
+      <nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="/pages/pt-br/#inicio">Início</a></li>
+          <li><a href="/pages/pt-br/#servicos">Serviços</a></li>
+          <li><a href="/pages/pt-br/#portfolio">Portfólio</a></li>
+          <li><a href="/pages/pt-br/#contato">Contato</a></li>
+          <li><a href="/pages/pt-br/util/" aria-current="page">Utilitários</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="util-hero">
+      <div class="container">
+        <div class="badge reveal visible">Ferramentas gratuitas</div>
+        <h1 class="reveal visible">Utilitários <span>online</span></h1>
+        <p class="reveal visible">Calculadoras e ferramentas práticas para o dia a dia. Rápidas, sem cadastro e direto ao ponto.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="util-grid">
+          <article class="util-card reveal">
+            <div class="icon">💰</div>
+            <h3>Calculadora de Juros Compostos</h3>
+            <p>Simule o crescimento de um investimento com aportes mensais, taxa de juros e período personalizado.</p>
+            <a href="/pages/pt-br/util/calculadora-juros/" class="btn btn-primary">Abrir calculadora</a>
+          </article>
+
+          <article class="util-card reveal">
+            <div class="icon">⛽</div>
+            <h3>Custo de Combustível por Viagem</h3>
+            <p>Calcule quanto vai gastar em combustível com base na distância, consumo do veículo e preço do litro.</p>
+            <a href="/pages/pt-br/util/calculadora-combustivel/" class="btn btn-primary">Abrir calculadora</a>
+          </article>
+
+          <article class="util-card coming-soon reveal">
+            <div class="icon">📊</div>
+            <h3>Em breve</h3>
+            <p>Mais ferramentas úteis chegando em breve.</p>
+            <span class="tag-soon">Em breve</span>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 jldatainfo. Todos os direitos reservados.</p>
+      <p>Criação de sites, landing pages, hospedagem e domínio.</p>
+    </div>
+  </footer>
+
+  <div class="img-logo-social">
+    <a href="https://wa.me/5521980772874" target="_blank" rel="noopener noreferrer" class="btn-whatsapp zindex-1">
+      <img src="/assets/img/logo-whatsapp.png" class="img-logo-social btn-whatsapp" alt="WhatsApp" />
+    </a>
+  </div>
+
+  <script>
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.08}s`;
+      observer.observe(el);
+    });
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 30);
+    });
+  </script>
+</body>
+</html>
