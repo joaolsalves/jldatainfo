@@ -250,6 +250,31 @@ export default function InterestCalculatorPage() {
               )}
             </div>
           </div>
+
+          {/* Banners */}
+          <div className="banners-row">
+            <div className="banner-slot banner-adsense">
+              <span className="banner-label">{isPtBr ? "Publicidade" : "Advertisement"}</span>
+              <ins className="adsbygoogle"
+                style={{ display: "block" }}
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                data-ad-slot="XXXXXXXXXX"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            </div>
+            <div className="banner-slot banner-sponsor">
+              <span className="banner-label">{isPtBr ? "Patrocinador" : "Sponsor"}</span>
+              <div className="sponsor-placeholder">
+                <div className="sponsor-icon">🤝</div>
+                <p className="sponsor-text">{isPtBr ? "Seu anúncio aqui" : "Your ad here"}</p>
+                <p className="sponsor-sub">{isPtBr ? "Entre em contato para patrocinar esta ferramenta" : "Get in touch to sponsor this tool"}</p>
+                <Link href={isPtBr ? "/pt-br#contato" : "/en#contact"} className="btn btn-outline" style={{ fontSize: "0.85rem", minHeight: "40px", padding: "0 16px" }}>
+                  {isPtBr ? "Falar conosco" : "Contact us"}
+                </Link>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </main>

@@ -1328,3 +1328,15 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* Banners */
+.banners-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 32px; padding-bottom: 12px; }
+.banner-slot { border-radius: var(--radius); border: 1px solid var(--border); background: var(--card); overflow: hidden; position: relative; min-height: 140px; }
+.banner-label { display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); padding: 10px 14px 0; opacity: 0.6; }
+.banner-adsense ins { display: block; min-height: 100px; }
+.sponsor-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 20px; text-align: center; height: calc(100% - 32px); }
+.sponsor-icon { font-size: 2rem; line-height: 1; }
+.sponsor-text { font-weight: 700; font-size: 1rem; color: #fff; }
+.sponsor-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.5; max-width: 26ch; }
+.banner-sponsor { border-style: dashed; border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+@media (max-width: 860px) { .banners-row { grid-template-columns: 1fr; } }
