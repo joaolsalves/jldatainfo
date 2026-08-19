@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#iconGrad)" />
+  <rect x="4" y="4" width="56" height="56" rx="14" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  <text x="32" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800" fill="#ffffff" letter-spacing="-0.5">JL</text>
+  <defs>
+    <linearGradient id="iconGrad" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d47ff" />
+      <stop offset="100%" stop-color="#050b18" />
+    </linearGradient>
+  </defs>
+</svg>

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import Image from "next/image";
+
 interface HeaderProps {
   locale: string;
   nav: { home: string; services: string; portfolio: string; contact: string; utilities: string };
@@ -36,8 +38,7 @@ export default function Header({ locale, nav, homeAnchors }: HeaderProps) {
     <header id="header" className={scrolled ? "scrolled" : ""}>
       <div className="container nav">
         <Link href={`/${locale}`} className="logo" aria-label="jldatainfo">
-          <span className="logo-mark">JL</span>
-          <span>jldatainfo</span>
+          <Image src="/assets/img/logo-jldatainfo.svg" alt="JL DataInfo" width={180} height={52} priority />
         </Link>
         <nav>
           <button

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" fill="none">
+  <!-- JL Mark -->
+  <rect x="4" y="12" width="56" height="56" rx="14" fill="url(#grad)" />
+  <text x="32" y="50" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#ffffff" letter-spacing="-0.5">JL</text>
+
+  <!-- Wordmark -->
+  <text x="74" y="48" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="1.2"><tspan fill="#8fb1ff">DATA</tspan><tspan fill="#ffffff">INFO</tspan></text>
+
+  <!-- URL below -->
+  <text x="74" y="64" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="600" fill="#6b7fa3" letter-spacing="0.8">jldatainfo.com</text>
+
+  <defs>
+    <linearGradient id="grad" x1="4" y1="12" x2="60" y2="68" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d47ff" />
+      <stop offset="100%" stop-color="#050b18" />
+    </linearGradient>
+  </defs>
+</svg>

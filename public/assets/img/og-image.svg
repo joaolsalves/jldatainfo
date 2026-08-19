@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#05070d" />
+  <rect width="1200" height="630" fill="url(#bgGrad)" opacity="0.6" />
+
+  <!-- Logo JL Mark -->
+  <rect x="80" y="220" width="120" height="120" rx="28" fill="url(#logoGrad)" />
+  <text x="140" y="296" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800" fill="#ffffff">JL</text>
+
+  <!-- Brand text -->
+  <text x="230" y="270" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#ffffff" letter-spacing="2"><tspan fill="#8fb1ff">DATA</tspan><tspan fill="#ffffff">INFO</tspan></text>
+
+  <!-- Tagline -->
+  <text x="230" y="320" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#b9c2dd">Sites • Landing Pages • Hospedagem • Domínio</text>
+
+  <!-- URL -->
+  <text x="230" y="360" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" fill="#6b7fa3">jldatainfo.com</text>
+
+  <!-- Decorative line -->
+  <rect x="80" y="400" width="400" height="2" rx="1" fill="url(#lineGrad)" opacity="0.5" />
+
+  <!-- Subtitle -->
+  <text x="80" y="450" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#8fb1ff">Sua marca forte na internet</text>
+
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1200" y2="630">
+      <stop offset="0%" stop-color="#0d47ff" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="transparent" />
+    </linearGradient>
+    <linearGradient id="logoGrad" x1="80" y1="220" x2="200" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d47ff" />
+      <stop offset="100%" stop-color="#050b18" />
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="80" y1="0" x2="480" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d47ff" />
+      <stop offset="100%" stop-color="transparent" />
+    </linearGradient>
+  </defs>
+</svg>
