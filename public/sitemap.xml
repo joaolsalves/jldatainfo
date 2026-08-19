@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
-    <loc>https://jldatainfo.com/pt-br/</loc>
+    <loc>https://jldatainfo.com/pt-br</loc>
     <image:image>
       <image:loc>https://jldatainfo.com/assets/img/logo-jldatainfo.svg</image:loc>
       <image:title>JL DataInfo - Logo</image:title>
@@ -15,7 +15,7 @@
   </url>
 
   <url>
-    <loc>https://jldatainfo.com/en/</loc>
+    <loc>https://jldatainfo.com/en</loc>
     <image:image>
       <image:loc>https://jldatainfo.com/assets/img/logo-jldatainfo.svg</image:loc>
       <image:title>JL DataInfo - Logo</image:title>
@@ -23,7 +23,7 @@
   </url>
 
   <url>
-    <loc>https://jldatainfo.com/pt-br/util/</loc>
+    <loc>https://jldatainfo.com/pt-br/util</loc>
     <image:image>
       <image:loc>https://jldatainfo.com/assets/img/logo-jl-icon.svg</image:loc>
       <image:title>JL DataInfo - Utilitários online</image:title>
@@ -31,31 +31,31 @@
   </url>
 
   <url>
-    <loc>https://jldatainfo.com/en/util/</loc>
+    <loc>https://jldatainfo.com/en/util</loc>
   </url>
 
   <url>
-    <loc>https://jldatainfo.com/pt-br/util/calculadora-juros/</loc>
+    <loc>https://jldatainfo.com/pt-br/util/calculadora-juros</loc>
   </url>
 
   <url>
-    <loc>https://jldatainfo.com/en/util/calculadora-juros/</loc>
+    <loc>https://jldatainfo.com/en/util/calculadora-juros</loc>
   </url>
 
   <url>
-    <loc>https://jldatainfo.com/pt-br/util/calculadora-combustivel/</loc>
+    <loc>https://jldatainfo.com/pt-br/util/calculadora-combustivel</loc>
   </url>
 
   <url>
-    <loc>https://jldatainfo.com/en/util/calculadora-combustivel/</loc>
+    <loc>https://jldatainfo.com/en/util/calculadora-combustivel</loc>
   </url>
 
   <url>
-    <loc>https://jldatainfo.com/pt-br/privacidade/</loc>
+    <loc>https://jldatainfo.com/pt-br/privacidade</loc>
   </url>
 
   <url>
-    <loc>https://jldatainfo.com/en/privacidade/</loc>
+    <loc>https://jldatainfo.com/en/privacidade</loc>
   </url>
 
 </urlset>
