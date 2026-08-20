@@ -1,2 +1,1 @@
-#git remote add origin https://github.com/joaolsalves/jldatainfo.git
-git push -u origin master
+git add -A & git commit -m "Google Analytics" & git push origin main
